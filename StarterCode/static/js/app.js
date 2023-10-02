@@ -2,7 +2,7 @@
 
 const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 
-// display sample metadata
+// display sample metadata on demographic panel
 
 function SampleMetaData(sample){
     d3.json(url).then((data) => {
@@ -23,6 +23,9 @@ function SampleMetaData(sample){
 }
 
 function buildCharts(sample){
+    
+    // get values from the json
+    
     d3.json(url).then((data) => {
         let samples = data.samples;
         let resultArray = samples.filter(sampleObj => sampleObj.id == sample);
@@ -35,7 +38,6 @@ function buildCharts(sample){
 
         // build bar chart
 
-        // yticks = otuIds.slice(0,10).map(otuID => {`OTU ${otuID}`}).reverse();
         yticks = otuIds.slice(0,10).map(otuID => `OTU ${otuID}`).reverse();
 
 
@@ -85,9 +87,13 @@ function buildCharts(sample){
 
 function init(){
 
+    // initialize drop down with a default sample value
+
     let selector = d3.select("#selDataset");
     d3.json(url).then((data) => {
         let sampleNames = data.names;
+
+        // loop through names and add to selector
 
         for (let i = 0; i < sampleNames.length; i++){
 
@@ -101,10 +107,13 @@ function init(){
         SampleMetaData(firstSample);
     });
 }
+
+// get new sample data each time 
 function optionChanged(newSample) {
     
     buildCharts(newSample);
     SampleMetaData(newSample);
   }
 
+// initialize dashboard
 init();
