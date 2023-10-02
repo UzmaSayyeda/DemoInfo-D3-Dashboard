@@ -31,10 +31,13 @@ function buildCharts(sample){
         let otuLabels = result.otu_labels;
         let sampleValues = result.sample_values;
 
+        
+
         // build bar chart
 
         // yticks = otuIds.slice(0,10).map(otuID => {`OTU ${otuID}`}).reverse();
-        yticks = otuIds.slice(0,10).map(otuID => {`OTU ${otuID}`}).reverse();
+        yticks = otuIds.slice(0,10).map(otuID => `OTU ${otuID}`).reverse();
+
 
         let barData = [
             {
@@ -47,7 +50,7 @@ function buildCharts(sample){
         ];
 
         let barLayout = {
-            title: "some title",
+            title: "Top 10 Operational Taxonomic Units",
             margin : {t:30, l: 150}
         };
         Plotly.newPlot("bar", barData, barLayout);
@@ -62,16 +65,17 @@ function buildCharts(sample){
                 mode : "markers",
                 marker : {
                     size : sampleValues,
-                    color : otuIds
+                    color : otuIds,
+                    colorscale : "Earth"
                 }
             }
         ]
 
         let bubbleLayout = {
-            title : "some title",
+            title : "Operational Taxonomic Units per Sample",
             margin : {t:0},
             hovermode : "closest",
-            xaxis : {title: "x axis"},
+            xaxis : {title: "OTU IDs"},
             margin : {t:30}
         };
 
@@ -81,7 +85,7 @@ function buildCharts(sample){
 
 function init(){
 
-    let selector = d3.select("#selDataSet");
+    let selector = d3.select("#selDataset");
     d3.json(url).then((data) => {
         let sampleNames = data.names;
 
