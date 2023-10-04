@@ -14,6 +14,8 @@ function SampleMetaData(sample){
 
         let panelBody = d3.select("#sample-metadata");
 
+    
+
         panelBody.html("")
 
         for (key in result){
@@ -21,6 +23,8 @@ function SampleMetaData(sample){
         }
     });
 }
+
+
 
 function buildCharts(sample){
     
@@ -105,6 +109,7 @@ function init(){
         let firstSample = sampleNames[0];
         buildCharts(firstSample);
         SampleMetaData(firstSample);
+        Gauge(firstSample);
     });
 }
 
@@ -113,6 +118,7 @@ function optionChanged(newSample) {
     
     buildCharts(newSample);
     SampleMetaData(newSample);
+    Gauge(newSample);
   }
 
 // initialize dashboard
