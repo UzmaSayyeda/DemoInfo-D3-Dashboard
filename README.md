@@ -54,3 +54,8 @@ The following task is advanced and therefore optional.
 - Use `console.log` inside of your JavaScript code to see what your data looks like at each step.
 
 - Refer to the [Plotly.js documentation](https://plotly.com/javascript/). when building the plots.
+
+## Credits  
+- ASKBcs for debugging app.js
+- Instructor for help with the bonus section.
+- [Favicon.io](https://favicon.io/) for the bacteria favicon.
